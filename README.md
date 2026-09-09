@@ -18,6 +18,11 @@ shooting form on every frame and gives live visual feedback:
 Each metric is drawn on screen in green (good) or red (needs work), along
 with an overall 0-100 form score and a live FPS counter.
 
+## Demo
+
+- [Demo clip 1](assets/demo-1.mp4)
+- [Demo clip 2](assets/demo-2.mp4)
+
 ## Run it
 
 ```bash

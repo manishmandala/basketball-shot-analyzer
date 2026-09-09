@@ -115,6 +115,8 @@ def analyze_shooting_form(landmarks, w, h, side='right'):
 
 # --- MAIN LOOP ---
 cap = cv2.VideoCapture(0)
+if not cap.isOpened():
+    raise SystemExit('Could not open webcam (index 0). Check it is connected and not in use by another app.')
 SHOOTING_SIDE = 'right'    # change to 'left' if needed
 
 # --- FPS TRACKING ---

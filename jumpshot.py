@@ -31,13 +31,15 @@ def calculate_angle(a, b, c):
 # Draws a labeled metric on screen in green (good) or red (bad)
 def draw_metric(frame, label, value, pos, good):
     color = (0, 255, 0) if good else (0, 0, 255)
+    text = f'{label}: {value}'
+    (text_w, text_h), _ = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 0.45, 1)
     cv2.rectangle(frame,
-                  (pos[0], pos[1]-25),
-                  (pos[0]+300, pos[1]+8),
+                  (pos[0], pos[1] - text_h - 8),
+                  (pos[0] + text_w + 10, pos[1] + 6),
                   (0, 0, 0), -1)
-    cv2.putText(frame, f'{label}: {value}',
+    cv2.putText(frame, text,
                 pos, cv2.FONT_HERSHEY_SIMPLEX,
-                0.65, color, 2)
+                0.45, color, 1)
 
 # --- FORM ANALYZER ---
 # Extracts landmarks, calculates angles, returns metrics dict
@@ -172,19 +174,23 @@ while True:
         score_color = (0, 255, 0) if score >= 80 else \
                       (0, 165, 255) if score >= 60 else \
                       (0, 0, 255)
-        cv2.rectangle(frame, (w-180, 10), (w-10, 80), (0,0,0), -1)
-        cv2.putText(frame, f'SCORE: {score}',
-                    (w-170, 55), cv2.FONT_HERSHEY_SIMPLEX,
-                    1.2, score_color, 3)
+        score_text = f'SCORE: {score}'
+        (text_w, text_h), _ = cv2.getTextSize(score_text, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+        margin = 10
+        box_left = w - text_w - margin * 3
+        cv2.rectangle(frame, (box_left, 10), (w - margin, 20 + text_h + margin), (0, 0, 0), -1)
+        cv2.putText(frame, score_text,
+                    (box_left + margin, 20 + text_h),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, score_color, 2)
 
     else:
         cv2.putText(frame, 'Stand back - full body needed',
                     (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
-                    0.8, (255, 255, 0), 2)
+                    0.55, (255, 255, 0), 1)
 
     cv2.putText(frame, f'FPS: {fps:.1f}',
                 (10, h-15), cv2.FONT_HERSHEY_SIMPLEX,
-                0.6, (255, 255, 255), 2)
+                0.45, (255, 255, 255), 1)
 
     cv2.imshow('Basketball Form Analyzer', frame)
 

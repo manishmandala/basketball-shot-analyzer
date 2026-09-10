@@ -35,3 +35,14 @@ Press `q` to quit - average FPS over the session is printed to the console.
 
 By default it tracks the right side; change `SHOOTING_SIDE` in `jumpshot.py`
 to `'left'` if you shoot left-handed.
+
+## Next steps
+
+- Improve accuracy and smoothness of the form metrics - reduce frame-to-frame
+  noise in the angle measurements so the score doesn't flicker on borderline
+  reps.
+- Support a stationary tripod setup where the camera just watches a full
+  shooting session hands-free: automatically detect and count individual
+  shot attempts, track make/miss, and build a per-session summary -
+  including shooting hotspots on the court and form feedback trends across
+  the whole session, not just frame-by-frame.

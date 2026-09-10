@@ -9,11 +9,11 @@ Using [MediaPipe Pose](https://google.github.io/mediapipe/solutions/pose.html)
 for real-time body landmark detection, the script measures five components of
 shooting form on every frame and gives live visual feedback:
 
-- **Elbow angle** — wants 80-110°
-- **Knee bend** — wants 140°+
-- **Elbow height** (shoulder angle) — wants 70°+
-- **Stance width** (ankle-to-shoulder ratio) — wants 0.8-1.4
-- **Wrist position** — wrist above elbow at release
+- **Elbow angle** - wants 80-110°
+- **Knee bend** - wants 140°+
+- **Elbow height** (shoulder angle) - wants 70°+
+- **Stance width** (ankle-to-shoulder ratio) - wants 0.8-1.4
+- **Wrist position** - wrist above elbow at release
 
 Each metric is drawn on screen in green (good) or red (needs work), along
 with an overall 0-100 form score and a live FPS counter.
@@ -31,7 +31,7 @@ python jumpshot.py
 ```
 
 Stand back far enough that your full body is in frame, then take some shots.
-Press `q` to quit — average FPS over the session is printed to the console.
+Press `q` to quit - average FPS over the session is printed to the console.
 
 By default it tracks the right side; change `SHOOTING_SIDE` in `jumpshot.py`
 to `'left'` if you shoot left-handed.

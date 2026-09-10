@@ -129,10 +129,20 @@ prev_frame_time = time.time()
 fps_history = []
 WARMUP_FRAMES = 30  # skip the first second or so while the camera/model settle
 
+consecutive_failures = 0
+MAX_CONSECUTIVE_FAILURES = 30  # ~1 second at 30fps before giving up
+
 while True:
     ret, frame = cap.read()
     if not ret:
+        consecutive_failures += 1
+        if consecutive_failures > MAX_CONSECUTIVE_FAILURES:
+            print('Camera read failed repeatedly - is it still connected? Exiting.')
+            cap.release()
+            cv2.destroyAllWindows()
+            quit()
         continue
+    consecutive_failures = 0
 
     current_frame_time = time.time()
     elapsed = current_frame_time - prev_frame_time
